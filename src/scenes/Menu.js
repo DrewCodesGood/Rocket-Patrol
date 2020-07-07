@@ -4,9 +4,14 @@ class Menu extends Phaser.Scene {
     }
     preload() {
         // load audio
-        this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/explosion38.wav');
-        this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.audio('sfx_select', './assets/blip_select12.mp3');
+        this.load.audio('buzz', './assets/buzz.mp3');
+        this.load.audio('buzz2', './assets/buzz2.mp3');
+        this.load.audio('buzz3', './assets/buzz3.mp3');
+        this.load.audio('buzz4', './assets/buzz4.mp3');
+        this.load.audio('shoot', './assets/shoot.mp3');
+        this.load.audio('GameSong' , './assets/GameSong.mp3');
+        this.load.image('backgroundtitle', './assets/backgroundtitle.png');
     }
 
 
@@ -30,11 +35,12 @@ class Menu extends Phaser.Scene {
         let centerY = game.config.height/2;
         let textSpacer = 64;
 
-        this.add.text(centerX, centerY- textSpacer, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(centerX, centerY, 'Use <-> arrows to move & (F) to Fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#CCCCFF';
+        this.add.image(centerX,centerY, 'backgroundtitle');
+        this.add.text(centerX, centerY- textSpacer, 'Flight of the Bumblebees', menuConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY, 'Use <-> arrows to move & (F) to pollenate!', menuConfig).setOrigin(0.5);
+        menuConfig.backgroundColor = '#87CEEB';
         menuConfig.color = '#000000';
-        this.add.text(centerX, centerY + textSpacer, 'Press <- for Easy or -> for Hard', menuConfig).setOrigin(0.5)
+        this.add.text(centerX, centerY + textSpacer, 'Press <- for Slow Bees or -> for Fast Bees', menuConfig).setOrigin(0.5);
 
         //change scenes
         //this.scene.start("playScene");
@@ -42,6 +48,7 @@ class Menu extends Phaser.Scene {
             // define keys
             keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
             keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+            keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
     update() {
@@ -49,19 +56,30 @@ class Menu extends Phaser.Scene {
           // easy mode
           game.settings = {
             spaceshipSpeed: 2,
-            gameTimer: 60000    
+            gameTimer: 60000
+          
           }
           this.sound.play('sfx_select');
-          this.scene.start("playScene");    
+          this.scene.start("playScene"); 
+          
+        
+          
         }
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
           // hard mode
           game.settings = {
-            spaceshipSpeed: 5,
+            spaceshipSpeed: 4,
             gameTimer: 45000    
+
+            
           }
           this.sound.play('sfx_select');
           this.scene.start("playScene");    
+
+          
+
         }
       }
+
+      
 }

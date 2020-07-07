@@ -15,4 +15,4 @@ game.settings = {
 }
 
 //reserve some keyboard bindings
-let keyF, keyLEFT, keyRIGHT;
+let keyF, keyLEFT, keyRIGHT, keySPACE;
